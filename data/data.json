@@ -1,14 +1,10 @@
 {
   "user": [
     {
-      "id": 1,
-      "name": "123",
-      "email": "emm@gmail.com"
-    },
-    {
-      "id": 2,
-      "name": "456",
-      "email": "emm@gmail.com"
+      "name": "나는",
+      "email": "바보",
+      "password": "멍청이",
+      "id": 1
     }
   ]
 }

@@ -7,8 +7,10 @@ function App() {
   // const [name, setName] = useState("");
   const name = useStore((state) => state.name);
   const email = useStore((state) => state.email);
+  const password = useStore((state) => state.password);
   const setName = useStore((state) => state.setName);
   const setEmail = useStore((state) => state.setEmail);
+  const setPassword = useStore((state) => state.setPassword);
 
   const isLogin = useStore((state) => state.isLogin);
   const setIsLogin = useStore((state) => state.setIsLogin);
@@ -26,9 +28,9 @@ function App() {
     setEmail(e.target.value);
   };
 
-  // const onPasswordChange = (e) => {
-  //   setName(e.target.value);
-  // };
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   if (loading) {
     return <p>Loading!!</p>;
@@ -38,29 +40,30 @@ function App() {
     return <p>cannot read data!!</p>;
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   const response = await axios
-  //     .post("http://localhost:3001/user", {
-  //       name,
-  //       email,
-  //     })
-  //     .then((res) => console.log(res.data))
-  //     .then(() => alert("signup success"))
-  //     .then(() => setIsLogin(true))
-  //     .catch((err) => console.log(err.response.message));
-  // };
+    const response = await axios
+      .post("http://localhost:3001/user", {
+        name,
+        email,
+        password,
+      })
+      .then((res) => console.log(res.data))
+      .then(() => alert("signup success"))
+      .then(() => setIsLogin(true))
+      .catch((err) => console.log(err.response.message));
+  };
 
-  // console.log(isLogin);
+  console.log(isLogin);
 
   return (
     <div className="App">
       <input value={name} onChange={onNameChange} />
       <input value={email} onChange={onEmailChange} />
-      {/* <input value={password} onChange={onChange} /> */}
+      <input value={password} onChange={onPasswordChange} />
 
-      <button onClick={fetchData}>Click</button>
+      <button onClick={handleSubmit}>Click</button>
       <div>{data.name}</div>
     </div>
   );
