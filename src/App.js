@@ -4,32 +4,70 @@ import axios from "axios";
 import useStore from "./store";
 
 function App() {
-  // const [name, setName] = useState("");
-  const name = useStore((state) => state.name);
-  const email = useStore((state) => state.email);
-  const password = useStore((state) => state.password);
-  const setName = useStore((state) => state.setName);
-  const setEmail = useStore((state) => state.setEmail);
-  const setPassword = useStore((state) => state.setPassword);
-
-  const isLogin = useStore((state) => state.isLogin);
-  const setIsLogin = useStore((state) => state.setIsLogin);
-
-  const data = useStore((state) => state.data);
-  const loading = useStore((state) => state.loading);
-  const hasErrors = useStore((state) => state.hasErrors);
-  const fetchData = useStore((state) => state.fetch);
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    loading,
+    hasErrors,
+    isLogin,
+    setIsLogin,
+    isName,
+    isEmail,
+    isPassword,
+    setIsName,
+    setIsEmail,
+    setIsPassword,
+    nameMessage,
+    emailMessage,
+    passwordMessage,
+    setNameMessage,
+    setEmailMessage,
+    setPasswordMessage,
+  } = useStore((state) => state);
 
   const onNameChange = (e) => {
     setName(e.target.value);
+
+    if (e.target.value.length < 2 || e.target.value.length > 5) {
+      setNameMessage("2글자~5글자로 작성해주세요!");
+      setIsName(false);
+    } else {
+      setNameMessage("올바른 이름 형식입니다!");
+      setIsName(true);
+    }
   };
 
   const onEmailChange = (e) => {
+    const emailRegex =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     setEmail(e.target.value);
+
+    if (!emailRegex.test(e.target.value)) {
+      setEmailMessage("이메일 형식이 틀렸습니다. 다시 작성해주세요!");
+      setIsEmail(false);
+    } else {
+      setEmailMessage("올바른 이메일 형식입니다!");
+      setIsEmail(true);
+    }
   };
 
   const onPasswordChange = (e) => {
+    const pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
     setPassword(e.target.value);
+
+    if (!pwRegex.test(e.target.value)) {
+      setPasswordMessage(
+        "숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!"
+      );
+      setIsPassword(false);
+    } else {
+      setPasswordMessage("올바른 비밀번호 형식입니다!");
+      setIsPassword(true);
+    }
   };
 
   if (loading) {
@@ -60,11 +98,26 @@ function App() {
   return (
     <div className="App">
       <input value={name} onChange={onNameChange} />
+      {name.length > 0 && (
+        <div className={`message ${isName ? "success" : "error"}`}>
+          {nameMessage}
+        </div>
+      )}
       <input value={email} onChange={onEmailChange} />
+      <div className={`message ${isEmail ? "success" : "error"}`}>
+        {emailMessage}
+      </div>
       <input value={password} onChange={onPasswordChange} />
-
-      <button onClick={handleSubmit}>Click</button>
-      <div>{data.name}</div>
+      <div className={`message ${isPassword ? "success" : "error"}`}>
+        {passwordMessage}
+      </div>
+      <button
+        onClick={handleSubmit}
+        disabled={!(isName && isEmail && isPassword)}
+      >
+        Click
+      </button>
+      <div>{name}</div>
     </div>
   );
 
