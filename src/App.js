@@ -13,33 +13,55 @@ function App() {
   const isLogin = useStore((state) => state.isLogin);
   const setIsLogin = useStore((state) => state.setIsLogin);
 
-  const onChange = (e) => {
+  const data = useStore((state) => state.data);
+  const loading = useStore((state) => state.loading);
+  const hasErrors = useStore((state) => state.hasErrors);
+  const fetchData = useStore((state) => state.fetch);
+
+  const onNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const response = await axios
-      .post("http://localhost:3001/user", {
-        name: name,
-      })
-      .then((res) => console.log(res.data))
-      .then(() => alert("signup success"))
-      .then(() => setIsLogin(true))
-      .catch((err) => console.log(err.response.message));
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  console.log(isLogin);
+  // const onPasswordChange = (e) => {
+  //   setName(e.target.value);
+  // };
+
+  if (loading) {
+    return <p>Loading!!</p>;
+  }
+
+  if (hasErrors) {
+    return <p>cannot read data!!</p>;
+  }
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const response = await axios
+  //     .post("http://localhost:3001/user", {
+  //       name,
+  //       email,
+  //     })
+  //     .then((res) => console.log(res.data))
+  //     .then(() => alert("signup success"))
+  //     .then(() => setIsLogin(true))
+  //     .catch((err) => console.log(err.response.message));
+  // };
+
+  // console.log(isLogin);
 
   return (
     <div className="App">
-      <input value={name} onChange={onChange} />
-      {/* <input value={email} onChange={onChange} /> */}
+      <input value={name} onChange={onNameChange} />
+      <input value={email} onChange={onEmailChange} />
       {/* <input value={password} onChange={onChange} /> */}
 
-      <button onClick={handleSubmit}>Click</button>
-      <b>{name}</b>
+      <button onClick={fetchData}>Click</button>
+      <div>{data.name}</div>
     </div>
   );
 

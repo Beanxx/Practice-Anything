@@ -2,35 +2,13 @@
   "user": [
     {
       "id": 1,
-      "name": "123"
+      "name": "123",
+      "email": "emm@gmail.com"
     },
     {
-      "name": "sdfdd",
-      "id": 2
-    },
-    {
-      "name": "sdfdd",
-      "id": 3
-    },
-    {
-      "name": "dd",
-      "id": 4
-    },
-    {
-      "name": "happy",
-      "id": 5
-    },
-    {
-      "name": "happy",
-      "id": 6
-    },
-    {
-      "name": "",
-      "id": 7
-    },
-    {
-      "name": "sddd",
-      "id": 8
+      "id": 2,
+      "name": "456",
+      "email": "emm@gmail.com"
     }
   ]
 }
