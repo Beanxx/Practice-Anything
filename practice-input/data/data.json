@@ -1,0 +1,40 @@
+{
+  "user": [
+    {
+      "name": "나는",
+      "email": "바보",
+      "password": "멍청이",
+      "id": 1
+    },
+    {
+      "name": "dd",
+      "email": "ss",
+      "password": "ss",
+      "id": 2
+    },
+    {
+      "name": "ddd",
+      "email": "",
+      "password": "",
+      "id": 3
+    },
+    {
+      "name": "dd",
+      "email": "",
+      "password": "",
+      "id": 4
+    },
+    {
+      "name": "dddd",
+      "email": "ff",
+      "password": "dd",
+      "id": 5
+    },
+    {
+      "name": "ㅇㅇ",
+      "email": "ddd@gmail.com",
+      "password": "dddsdf!!!!1",
+      "id": 6
+    }
+  ]
+}
