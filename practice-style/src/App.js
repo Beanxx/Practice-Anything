@@ -36,7 +36,7 @@ const Button3 = styled.button`
 
 function App() {
   return (
-    <>
+    <Container>
       <BlueButton>Blue Button</BlueButton>
       <br />
       <BigBlueButton>Big Blue Button</BigBlueButton>
@@ -54,8 +54,17 @@ function App() {
       <Button3>Button3</Button3>
       <Button3 color="pink">Button3</Button3>
       <Button3 color="turquoise">Button3</Button3>
-    </>
+    </Container>
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  @media ${(props) => props.theme.desktop} {
+    background-color: ${(props) => props.theme.mainColor};
+  }
+  @media ${(props) => props.theme.mobile} {
+    background-color: ${(props) => props.theme.subColor};
+  }
+`;

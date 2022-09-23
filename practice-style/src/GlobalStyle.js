@@ -6,6 +6,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 2px;
     border-radius: 5px;
   }
+
+  *{
+    background-color: #202b38;
+    padding: 1rem;
+  }
+  
 `;
 
 export default GlobalStyle;
