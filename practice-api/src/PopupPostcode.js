@@ -26,9 +26,17 @@ const PopupPostcode = ({ setAddress }) => {
 
   const popUp = useDaumPostcodePopup();
 
+  const popupWidth = 500;
+  const popupHeight = 550;
+
+  const popupX = window.screen.width / 2 - popupWidth / 2;
+  const popupY = window.screen.height / 2 - popupHeight / 2;
+
   const handleClick = () => {
     popUp({
       onComplete: handlePostcode,
+      left: popupX,
+      top: popupY,
     });
   };
 
