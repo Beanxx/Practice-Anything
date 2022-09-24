@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+// import DaumPostcode from "react-daum-postcode";
+import { useDaumPostcodePopup } from "react-daum-postcode";
 
-import DaumPostcode from "react-daum-postcode";
-
-const PopupPostcode = ({ onClose, setAddress }) => {
+const PopupPostcode = ({ setAddress }) => {
   const handlePostcode = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -21,24 +21,23 @@ const PopupPostcode = ({ onClose, setAddress }) => {
     console.info("fullAdress: ", fullAddress);
     console.info("data.zonecode: ", data.zonecode);
     setAddress(fullAddress);
-    onClose();
+    // onClose();
+  };
+
+  const popUp = useDaumPostcodePopup();
+
+  const handleClick = () => {
+    popUp({
+      onComplete: handlePostcode,
+    });
   };
 
   return (
     <Container>
-      <div>
-        <DaumPostcode autoClose onComplete={handlePostcode} />
-      </div>
-
-      <button
-        type="button"
-        onClick={() => {
-          onClose();
-        }}
-        className="postCode_btn"
-      >
-        닫기
-      </button>
+      <button onClick={handleClick}>주소 검색</button>
+      {/* <div>
+        <DaumPostcode autoClose onClick={handleClick} />
+      </div> */}
     </Container>
   );
 };
