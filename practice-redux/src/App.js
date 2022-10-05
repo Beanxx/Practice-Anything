@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginSuccess, logoutSuccess } from "./redux/actions/loginAction";
 import { dataSuccess } from "./redux/actions/dataAction";
+import { login, logout } from "./redux/reducers/authSlice";
 
 const App = () => {
+  const isLogin = useSelector((state) => state.auth.isLogin);
   const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [content, setContent] = useState("");
 
@@ -18,57 +21,60 @@ const App = () => {
   // console.log(useSelector((state) => state.loginReducer.isLogin));
 
   // 리덕스 스토더에 담긴 상태를 가져온다.
-  const isLogin = useSelector((state) => state.loginReducer);
-  const login = useSelector((state) => state.loginReducer.isLogin);
-  const isData = useSelector((state) => state.dataReducer);
-  const data = useSelector((state) => state.dataReducer.content);
+  // const isLogin = useSelector((state) => state.loginReducer);
+  // const login = useSelector((state) => state.loginReducer.isLogin);
+  // const isData = useSelector((state) => state.dataReducer);
+  // const data = useSelector((state) => state.dataReducer.content);
 
   useEffect(() => {
     if (localStorage.getItem("token" !== null)) {
-      dispatch(loginSuccess(id));
+      // dispatch(loginSuccess(id));
+      dispatch(login(id));
     }
   }, []);
 
   const loginClick = () => {
     // reducer랑 엮어서 사용한다.
-    dispatch(loginSuccess(id));
+    // dispatch(loginSuccess(id));
+    dispatch(login(id));
     localStorage.setItem("token", "abc");
   };
 
   const logoutClick = () => {
-    dispatch(logoutSuccess());
+    // dispatch(logoutSuccess());
+    dispatch(logout());
     localStorage.removeItem("token");
     setId("");
     setContent("");
   };
 
-  const dataClick = () => {
-    dispatch(dataSuccess(content));
-  };
+  // const dataClick = () => {
+  //   dispatch(dataSuccess(content));
+  // };
 
   console.log(id);
-  console.log(content);
+  // console.log(content);
   console.log(isLogin);
-  console.log(isData);
+  // console.log(isData);
 
   return (
     <div>
       <div>
         <label>아이디</label>
         <input onChange={(el) => setId(el.target.value)}></input>
-        {login && (
+        {/* {login && (
           <>
             <label>내용</label>
             <input onChange={(el) => setContent(el.target.value)}></input>
           </>
-        )}
+        )} */}
       </div>
       <div>
         <button onClick={loginClick}>로그인</button>
         <button onClick={logoutClick}>로그아웃</button>
-        {login && <button onClick={dataClick}>게시물 작성</button>}
+        {/* {login && <button onClick={dataClick}>게시물 작성</button>} */}
       </div>
-      {data}
+      {/* {data} */}
     </div>
   );
 };
