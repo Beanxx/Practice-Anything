@@ -16,7 +16,7 @@ const TextInput = () => {
   const [text, setText] = useRecoilState(textState);
   // useReocilState(): 컴포넌트가 atom을 읽고 쓰게 하기 위함
 
-  const onChange = (event) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
