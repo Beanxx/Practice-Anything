@@ -12,7 +12,7 @@ const UnControlInput = <T extends FieldValues>({
 }: TControl<T>) => {
   return (
     <div style={{ display: "flex", gap: "10px" }}>
-      <label htmlFor={name}>{name}</label>
+      <label htmlFor={name}>⚫️ {name} (UnControlled)</label>
       <input type="text" {...register(name, { required: true })} />
     </div>
   );

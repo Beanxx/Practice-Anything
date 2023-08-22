@@ -8,19 +8,24 @@ import Second from "./Second";
 
 const First = () => {
   const methods = useForm();
+  const { handleSubmit } = methods;
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
 
-  const onError = (error: FieldErrors) => {
-    console.log(error);
+  const onError = (errors: FieldErrors) => {
+    for (const fieldName in errors) {
+      if (errors[fieldName]?.type === "required") {
+        console.log(`${fieldName} is required`);
+      }
+    }
   };
 
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit, onError)}>
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
           <Second />
           <button type="submit">Submit</button>
         </form>

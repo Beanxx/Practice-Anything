@@ -1,15 +1,24 @@
-import { useFormContext } from "react-hook-form";
-import Third from "./Third";
+import { useFormContext, useWatch } from "react-hook-form";
+import ControlInput from "./ControlInput";
+import UnControlInput from "./UnControlInput";
 
 const Second = () => {
-  const { control } = useFormContext();
+  const { control, register } = useFormContext();
+
+  const nameValue = useWatch({
+    control,
+    name: "name",
+  });
 
   return (
-    <div>
-      <Third name="title" control={control} />
-      <Third name="subTitle" control={control} />
-      <Third name="name" control={control} />
-    </div>
+    <>
+      <ControlInput name="name" control={control} />
+      <ControlInput name="gender" control={control} />
+      <UnControlInput name="address" register={register} />
+      <UnControlInput name="age" register={register} />
+
+      <div>{nameValue}</div>
+    </>
   );
 };
 export default Second;
