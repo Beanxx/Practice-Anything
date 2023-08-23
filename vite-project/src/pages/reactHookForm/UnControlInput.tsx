@@ -5,13 +5,13 @@ type TControl<T extends FieldValues> = {
   register: UseFormRegister<T>;
 };
 
-// 비제어 Input
+// UnControlled Input
 const UnControlInput = <T extends FieldValues>({
   name,
   register,
 }: TControl<T>) => {
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
+    <div style={{ display: "flex", gap: "10px", background: "orange" }}>
       <label htmlFor={name}>⚫️ {name} (UnControlled)</label>
       <input type="text" {...register(name, { required: true })} />
     </div>

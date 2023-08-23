@@ -10,7 +10,7 @@ type TControl<T extends FieldValues> = {
   control: Control<T>;
 };
 
-// 제어 Input
+// Controlled Input
 const ControlInput = <T extends FieldValues>({
   control,
   name,
@@ -20,7 +20,7 @@ const ControlInput = <T extends FieldValues>({
   } = useController({ name, control, rules: { required: true } });
 
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
+    <div style={{ display: "flex", gap: "10px", background: "green" }}>
       <label htmlFor={name}>⚪️ {name} (Controlled)</label>
       <input type="text" value={value || ""} onChange={onChange} />
     </div>

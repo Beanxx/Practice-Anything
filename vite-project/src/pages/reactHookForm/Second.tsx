@@ -11,14 +11,15 @@ const Second = () => {
   });
 
   return (
-    <>
-      <ControlInput name="name" control={control} />
-      <ControlInput name="gender" control={control} />
-      <UnControlInput name="address" register={register} />
-      <UnControlInput name="age" register={register} />
-
-      <div>{nameValue}</div>
-    </>
+    <div style={{ background: "blue", padding: "10px" }}>
+      <div>
+        <ControlInput name="name" control={control} />
+        <div>{nameValue}</div>
+      </div>
+      <div>
+        <UnControlInput name="title" register={register} />
+      </div>
+    </div>
   );
 };
 export default Second;
