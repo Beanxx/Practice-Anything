@@ -2,11 +2,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import styled from "styled-components";
 
-type TProps = {
-  id: string;
-};
-
-const SortableItem = ({ id }: TProps) => {
+const SortableItem = ({ id }: { id: string }) => {
   const {
     attributes,
     listeners,
@@ -33,16 +29,11 @@ export default SortableItem;
 
 const S = {
   Item: styled.li`
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
     width: 110px;
     height: 30px;
-    margin-bottom: 5px;
-    padding-left: 5px;
-    border: 1px solid gray;
+    text-align: center;
     border-radius: 5px;
-    user-select: none;
     background-color: gray;
+    border: 1px solid gray;
   `,
 };

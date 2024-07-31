@@ -3,18 +3,15 @@ import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 import SortableItem from "./SortableItem";
 import styled from "styled-components";
 
-type TProps = {
-  id: string;
-  items: string[];
-};
+const ID = "droppable-list";
 
-const Droppable = ({ id, items }: TProps) => {
-  const { setNodeRef } = useDroppable({ id });
+const Droppable = ({ items }: { items: string[] }) => {
+  const { setNodeRef } = useDroppable({ id: ID });
 
   return (
-    <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
+    <SortableContext id={ID} items={items} strategy={rectSortingStrategy}>
       <S.DroppableUl ref={setNodeRef}>
-        {items.map((item: any) => (
+        {items.map((item: string) => (
           <SortableItem key={item} id={item} />
         ))}
       </S.DroppableUl>
@@ -27,10 +24,13 @@ export default Droppable;
 const S = {
   DroppableUl: styled.ul`
     min-width: 110px;
-    padding: 20px 10px;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     border-radius: 5px;
+    padding: 20px 10px;
     list-style-type: none;
+    border: 1px solid black;
     background-color: #3e3e3e;
   `,
 };
