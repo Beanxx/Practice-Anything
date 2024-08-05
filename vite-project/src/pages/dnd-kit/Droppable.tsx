@@ -2,17 +2,19 @@ import { useDroppable } from "@dnd-kit/core";
 import { rectSortingStrategy, SortableContext } from "@dnd-kit/sortable";
 import SortableItem from "./SortableItem";
 import styled from "styled-components";
+import { TData } from ".";
 
 const ID = "droppable-list";
 
-const Droppable = ({ items }: { items: string[] }) => {
+const Droppable = ({ items }: { items: TData[] }) => {
   const { setNodeRef } = useDroppable({ id: ID });
+  const idList = items.map((item) => item.menuNo);
 
   return (
-    <SortableContext id={ID} items={items} strategy={rectSortingStrategy}>
+    <SortableContext id={ID} items={idList} strategy={rectSortingStrategy}>
       <S.DroppableUl ref={setNodeRef}>
-        {items.map((item: string) => (
-          <SortableItem key={item} id={item} />
+        {items.map((item) => (
+          <SortableItem key={item.menuNo} item={item} />
         ))}
       </S.DroppableUl>
     </SortableContext>

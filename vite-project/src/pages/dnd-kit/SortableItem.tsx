@@ -1,8 +1,9 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import styled from "styled-components";
+import { TData } from ".";
 
-const SortableItem = ({ id }: { id: string }) => {
+const SortableItem = ({ item }: { item: TData }) => {
   const {
     attributes,
     listeners,
@@ -10,7 +11,7 @@ const SortableItem = ({ id }: { id: string }) => {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id });
+  } = useSortable({ id: item.menuNo });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -19,8 +20,14 @@ const SortableItem = ({ id }: { id: string }) => {
   };
 
   return (
-    <S.Item style={style} ref={setNodeRef} {...attributes} {...listeners}>
-      Item {id}
+    <S.Item
+      style={style}
+      ref={setNodeRef}
+      $isDragging={isDragging}
+      {...attributes}
+      {...listeners}
+    >
+      {item.menuNo} {item.menuName}
     </S.Item>
   );
 };
@@ -28,12 +35,13 @@ const SortableItem = ({ id }: { id: string }) => {
 export default SortableItem;
 
 const S = {
-  Item: styled.li`
+  Item: styled.li<{ $isDragging: boolean }>`
     width: 110px;
     height: 30px;
     text-align: center;
     border-radius: 5px;
     background-color: gray;
     border: 1px solid gray;
+    cursor: ${({ $isDragging }) => ($isDragging ? "grabbing" : "grab")};
   `,
 };

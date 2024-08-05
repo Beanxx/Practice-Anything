@@ -7,7 +7,11 @@ import {
   DragEndEvent,
   DragOverEvent,
 } from "@dnd-kit/core";
-import { arrayMove } from "@dnd-kit/sortable";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { useState } from "react";
 import Droppable from "./Droppable";
 import styled from "styled-components";
@@ -15,7 +19,9 @@ import styled from "styled-components";
 const DndKit = () => {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
-  const [items, setItems] = useState<string[]>(["1", "2", "3", "4", "5"]);
+  const [items, setItems] = useState<TData[]>(data);
+
+  const itemData = items.map((item) => String(item.menuNo));
 
   const moveItem = (
     active: DragEndEvent["active"],
@@ -65,3 +71,88 @@ const S = {
     gap: 10px;
   `,
 };
+
+// --------------------
+
+export type TData = {
+  menuNo: number;
+  menuName: string;
+  menuImg: string;
+  applyProd: boolean;
+  applyDevelop: boolean;
+  seq: number;
+  createdAt: number[];
+};
+
+const data = [
+  {
+    menuNo: 26,
+    menuName: "출석체크",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/eNPo0m/ic_attend_check.png",
+    applyProd: true,
+    applyDevelop: true,
+    seq: 1,
+    createdAt: [2024, 4, 8, 17, 5, 48],
+  },
+  {
+    menuNo: 88,
+    menuName: "충전소",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/wkHcMY/ic_charge_point_main.png",
+    applyProd: false,
+    applyDevelop: false,
+    seq: 2,
+    createdAt: [2024, 6, 18, 16, 0, 14],
+  },
+  {
+    menuNo: 98,
+    menuName: "투표",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/y3JAHQ/ic_vote_main.png",
+    applyProd: true,
+    applyDevelop: true,
+    seq: 3,
+    createdAt: [2024, 6, 19, 14, 32],
+  },
+  {
+    menuNo: 122,
+    menuName: "챌린지",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/pAiAfD/testt.png",
+    applyProd: true,
+    applyDevelop: true,
+    seq: 4,
+    createdAt: [2024, 6, 25, 15, 38, 54],
+  },
+  {
+    menuNo: 75,
+    menuName: "설문조사",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/AbEqE6/ic_research_main.png",
+    applyProd: false,
+    applyDevelop: false,
+    seq: 5,
+    createdAt: [2024, 4, 30, 10, 29, 30],
+  },
+  {
+    menuNo: 72,
+    menuName: "참여내역",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/Zk6ZHV/ic_participate_main.png",
+    applyProd: false,
+    applyDevelop: false,
+    seq: 6,
+    createdAt: [2024, 4, 26, 18, 29, 34],
+  },
+  {
+    menuNo: 125,
+    menuName: "생활견적",
+    menuImg:
+      "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/cF73Jw/ic_life_estimate.png",
+    applyProd: true,
+    applyDevelop: true,
+    seq: 7,
+    createdAt: [2024, 7, 15, 15, 25, 8],
+  },
+];
