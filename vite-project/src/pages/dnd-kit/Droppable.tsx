@@ -11,7 +11,7 @@ const Droppable = ({ items }: { items: TData[] }) => {
   const idList = items.map((item) => item.menuNo);
 
   return (
-    <SortableContext id={ID} items={idList} strategy={rectSortingStrategy}>
+    <SortableContext items={idList} strategy={rectSortingStrategy}>
       <S.DroppableUl ref={setNodeRef}>
         {items.map((item) => (
           <SortableItem key={item.menuNo} item={item} />
@@ -32,7 +32,6 @@ const S = {
     border-radius: 5px;
     padding: 20px 10px;
     list-style-type: none;
-    border: 1px solid black;
     background-color: #3e3e3e;
   `,
 };

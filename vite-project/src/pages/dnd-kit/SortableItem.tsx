@@ -27,7 +27,8 @@ const SortableItem = ({ item }: { item: TData }) => {
       {...attributes}
       {...listeners}
     >
-      {item.menuNo} {item.menuName}
+      {/* {item.menuNo} {item.menuName} */}
+      {item.menuName}
     </S.Item>
   );
 };
@@ -36,12 +37,14 @@ export default SortableItem;
 
 const S = {
   Item: styled.li<{ $isDragging: boolean }>`
-    width: 110px;
-    height: 30px;
+    width: 200px;
+    padding: 0.5rem 1rem;
+    margin: 0.6rem 0;
     text-align: center;
     border-radius: 5px;
-    background-color: gray;
-    border: 1px solid gray;
+    background-color: black;
+    border: 1px dashed gray;
     cursor: ${({ $isDragging }) => ($isDragging ? "grabbing" : "grab")};
+    /* cursor: move; */
   `,
 };

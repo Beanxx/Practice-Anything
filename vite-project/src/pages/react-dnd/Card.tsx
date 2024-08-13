@@ -93,7 +93,7 @@ const Card = ({ index, item, moveCard, onDrop, setCards }: TProps) => {
   const opacity = isDragging ? 0.5 : 1;
 
   return (
-    <div ref={drop} style={{ backgroundColor: "gray", padding: "10px" }}>
+    <div ref={drop} style={{ backgroundColor: "#3e3e3e", padding: "10px" }}>
       <div ref={drag} style={{ ...style, opacity }}>
         {text}
       </div>

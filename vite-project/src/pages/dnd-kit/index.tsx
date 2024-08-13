@@ -12,14 +12,18 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Droppable from "./Droppable";
 import styled from "styled-components";
 
 const DndKit = () => {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
-  const [items, setItems] = useState<TData[]>(data);
+  const [items, setItems] = useState<TData[]>([]);
+
+  useEffect(() => {
+    data && setItems(data);
+  }, [data]);
 
   const itemData = items.map((item) => String(item.menuNo));
 
@@ -87,7 +91,7 @@ export type TData = {
 const data = [
   {
     menuNo: 26,
-    menuName: "출석체크",
+    menuName: "🥨",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/eNPo0m/ic_attend_check.png",
     applyProd: true,
@@ -97,7 +101,7 @@ const data = [
   },
   {
     menuNo: 88,
-    menuName: "충전소",
+    menuName: "a",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/wkHcMY/ic_charge_point_main.png",
     applyProd: false,
@@ -107,7 +111,7 @@ const data = [
   },
   {
     menuNo: 98,
-    menuName: "투표",
+    menuName: "b",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/y3JAHQ/ic_vote_main.png",
     applyProd: true,
@@ -117,7 +121,7 @@ const data = [
   },
   {
     menuNo: 122,
-    menuName: "챌린지",
+    menuName: "c",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/pAiAfD/testt.png",
     applyProd: true,
@@ -127,7 +131,7 @@ const data = [
   },
   {
     menuNo: 75,
-    menuName: "설문조사",
+    menuName: "d",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/AbEqE6/ic_research_main.png",
     applyProd: false,
@@ -137,7 +141,7 @@ const data = [
   },
   {
     menuNo: 72,
-    menuName: "참여내역",
+    menuName: "e",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/Zk6ZHV/ic_participate_main.png",
     applyProd: false,
@@ -147,7 +151,7 @@ const data = [
   },
   {
     menuNo: 125,
-    menuName: "생활견적",
+    menuName: "f",
     menuImg:
       "https://cdn.v3.dev.myd.world/3311de24464c894f1b0638ebaf5df925/images/cF73Jw/ic_life_estimate.png",
     applyProd: true,
